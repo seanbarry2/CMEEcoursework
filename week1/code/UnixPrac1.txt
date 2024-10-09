@@ -1,0 +1,19 @@
+cd ../data
+#1
+wc -l 407228326.fasta 407228412.fasta E.coli.fasta
+
+#2
+
+tail -n +2 E.coli.fasta | less
+
+#3
+
+tail -n +2 E.coli.fasta | tr -d '\n' | wc -m
+
+#4
+
+tr -d '\n' < E.coli.fasta | grep -o "ATGC" | wc -l
+
+#5
+
+a_count=$(grep -o "A" E.coli.fasta | wc -l); t_count=$(grep -o "T" E.coli.fasta | wc -l); g_count=$(grep -o "G" E.coli.fasta | wc -l); c_count=$(grep -o "C" E.coli.fasta | wc -l); echo "scale=5; ($a_count + $t_count) / ($g_count + $c_count)" | bc
