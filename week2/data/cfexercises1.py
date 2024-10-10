@@ -1,3 +1,5 @@
+import sys
+
 def foo_1(x):
     return x ** 0.5
 
@@ -34,3 +36,4 @@ def foo_6(x): # Calculate the factorial of x in a different way; no if statement
         facto = facto * x
         x = x - 1
     return facto
+
