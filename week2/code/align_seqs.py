@@ -18,7 +18,7 @@ else:
 # A function that computes a score by returning the number of matches starting
 # from arbitrary startpoint (chosen by user)
 def calculate_score(s1, s2, l1, l2, startpoint):
-    matched = "" # to hold string displaying alignements
+    matched = "" # to hold string displaying alignments
     score = 0
     for i in range(l2):
         if (i + startpoint) < l1:

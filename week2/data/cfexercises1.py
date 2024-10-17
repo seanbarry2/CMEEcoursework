@@ -55,7 +55,7 @@ def main(argv):
     print("foo_5(10):", foo_5(10))  # Should return 3628800, the factorial of 10
     print("foo_6(6):", foo_6(6))  # Should return 720, the factorial of 6
 
-    print("\nAll test cases executed.")
+    print("\nDone!")
 
 if __name__ == "__main__":
     main(sys.argv)
