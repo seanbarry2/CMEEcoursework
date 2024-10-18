@@ -65,9 +65,9 @@ This repository contains a collection of Python scripts developed during Week 2.
   - Aligns the sequences by calculating the alignment score with a scoring function.
   - Outputs the best alignment and score into a text file stored in the '../results' directory.
   
-# Missing oaks
+# Missing oaks ('oaks_debug.py')
 
-- Purpose: Searches through a csv file and finds oaks which are then outputted into a folder in '../results'.
+- Purpose: Searches through a csv file and finds oaks which are then outputted into a folder in '../results'. Original file contained bugs that were removed.
 - Features:
   - Defines oaks (all trees that have a genus name being 'quercus'.
   - Reads a csv file containing all trees in question.
