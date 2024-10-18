@@ -1,0 +1,1 @@
+Do doctests for practicals

@@ -14,5 +14,6 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 # Latin name: Passerculus sandwichensis Common name: Savannah sparrow Mass: 18.7
 # ... etc.
 
-for latin_name, common_name, mass in birds:
-    print(latin_name, common_name, mass)
+for bird in birds:
+    latin_name, common_name, mass = bird
+    print(f"Latin name: {latin_name} Common name: {common_name} Mass: {mass}")

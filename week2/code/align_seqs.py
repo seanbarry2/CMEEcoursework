@@ -1,56 +1,75 @@
-# Two example sequences to match
-seq2 = "ATCGCCGGATTACGGG"
-seq1 = "CAATTCGGAT"
+import sys
+import csv
+import os
 
-# Assign the longer sequence s1, and the shorter to s2
-# l1 is length of the longest, l2 that of the shortest
+# Function to read sequences from a CSV file
+def read_sequences(filename):
+    with open(filename, 'r') as file:
+        reader = csv.reader(file)
+        sequences = [row[0] for row in reader]  # Assumes each sequence is in a separate row
+    return sequences[0], sequences[1]
 
-l1 = len(seq1)
-l2 = len(seq2)
-if l1 >= l2:
-    s1 = seq1
-    s2 = seq2
-else:
-    s1 = seq2
-    s2 = seq1
-    l1, l2 = l2, l1 # swap the two lengths
-
-# A function that computes a score by returning the number of matches starting
-# from arbitrary startpoint (chosen by user)
+# Function to calculate the alignment score
 def calculate_score(s1, s2, l1, l2, startpoint):
-    matched = "" # to hold string displaying alignments
     score = 0
+    matched = ""
     for i in range(l2):
-        if (i + startpoint) < l1:
-            if s1[i + startpoint] == s2[i]: # if the bases match
-                matched = matched + "*"
-                score = score + 1
-            else:
-                matched = matched + "-"
+        if (i + startpoint) < l1 and s1[i + startpoint] == s2[i]:
+            matched += "*"
+            score += 1
+        else:
+            matched += "-"
+    return score, "." * startpoint + matched
 
-    # some formatted output
-    print("." * startpoint + matched)           
-    print("." * startpoint + s2)
-    print(s1)
-    print(score) 
-    print(" ")
+# Function to find the best alignment
+def find_best_align(seq1, seq2):
+    l1, l2 = len(seq1), len(seq2)
+    # Ensure s1 is the longer sequence
+    if l1 >= l2:
+        s1, s2 = seq1, seq2
+    else:
+        s1, s2 = seq2, seq1
+        l1, l2 = l2, l1
 
-    return score
+    best_align = ""
+    best_score = -1
+    for i in range(l1):
+        score, alignment = calculate_score(s1, s2, l1, l2, i)
+        if score > best_score:
+            best_score = score
+            best_align = "." * i + s2
 
-# Test the function with some example starting points:
-# calculate_score(s1, s2, l1, l2, 0)
-# calculate_score(s1, s2, l1, l2, 1)
-# calculate_score(s1, s2, l1, l2, 5)
+    return best_align, s1, best_score
 
-# now try to find the best match (highest score) for the two sequences
-my_best_align = None
-my_best_score = -1
+# Function to write alignment and score to a file in the ../results directory
+def write_align(filename, best_align, s1, best_score):
+    # Define output path in the parent results directory
+    output_path = os.path.join("..", "results", filename)
+    with open(output_path, 'w') as file:
+        file.write(f"Best alignment:\n{best_align}\n{s1}\n")
+        file.write(f"Best score: {best_score}\n")
+    return output_path
 
-for i in range(l1): # Note that you just take the last alignment with the highest score
-    z = calculate_score(s1, s2, l1, l2, i)
-    if z > my_best_score:
-        my_best_align = "." * i + s2 # think about what this is doing!
-        my_best_score = z 
-print(my_best_align)
-print(s1)
-print("Best score:", my_best_score)
+# Main execution block
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python align_seqs.py <filename.csv>")
+        sys.exit(1)
+    
+    input_file = sys.argv[1]
+    output_filename = "alignment_result!.txt"
+    
+    try:
+        # Read sequences from input CSV file
+        seq1, seq2 = read_sequences(input_file)
+        
+        # Find the best alignment and score
+        best_align, s1, best_score = find_best_align(seq1, seq2)
+        
+        # Write the result to the output file in the ../results directory
+        output_path = write_align(output_filename, best_align, s1, best_score)
+        print(f"Best alignment and score saved to {output_path}")
+    
+    except Exception as e:
+        print(f"Error: {e}")
+

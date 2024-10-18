@@ -39,3 +39,21 @@ print(more_than_100mm)
 
 less_than_50mm = [(month, rain) for month, rain in rainfall if rain < 50]
 print(less_than_50mm)
+
+# Step 1 using conventional loops
+more_than_100mm = []
+for month, rain in rainfall:
+    if rain > 100:
+        more_than_100mm.append((month, rain))
+
+print("Months and rainfall values when the amount of rain was greater than 100mm:")
+print(more_than_100mm)
+
+# Step 2 using conventional loops
+less_than_50mm = []
+for month, rain in rainfall:
+    if rain < 50:
+        less_than_50mm.append(month)
+
+print("Months where the amount of rain was less than 50mm:")
+print(less_than_50mm)
