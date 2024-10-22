@@ -1,0 +1,1874 @@
+Starting code feedback for Sean, Week2
+
+Current Points = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 1.62 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: week3, .git, week2, Feedback, week1
+
+Found the following files in parent directory: README.md, .gitignore, gitignore
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+
+**********************************************************************
+*~ 
+*.tmp
+
+**********************************************************************
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+
+**********************************************************************
+My CMEE Coursework Repository
+
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 3 weekly directories: week1, week2, week3
+
+The Week2 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK2...
+
+Found the following directories: data, results, sandbox, code
+
+Found the following files: README.md
+
+Checking for readme file in weekly directory...
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+
+**********************************************************************
+# README - Week 2 Code Review
+
+#Overview
+
+This repository contains a collection of Python scripts developed during Week 2. The scripts cover various programming concepts such as file I/O, sequence alignment, basic mathematical functions, control flow, object handling, and more. Below is an overview of the key features, functionality, and use cases for each component of the code.
+  
+# CSV File Operations ('basic_csv.py')
+
+- Purpose: Various scripts handle CSV file reading and writing.
+- Features:
+  - Reads a CSV file and processes data row by row.
+  - Extracts specific columns such as species names and body mass, and writes them to a new CSV file.
+  - Example files:
+    - `testcsv.csv`: A file containing columns like 'Species', 'Family', and 'Body mass (kg)'.
+    - `bodymass.csv`: Output file containing species and body mass.
+
+# File Input/Output (I/O) ('basicIOx.py')
+
+- Purpose: Several scripts demonstrate how to handle file input and output in Python.
+- Features:
+  - Reading from text files, skipping blank lines.
+  - Writing data, such as lists or numbers, to files.
+  - Using the `pickle` module to store and retrieve Python objects (e.g., dictionaries) for later use.
+
+# Global and Local Variables ('scope.py')
+
+- Purpose: Examples of how Python handles global and local variable scopes.
+- Features:
+  - Demonstrates the difference between global and local variables.
+  - Shows the impact of using `global` keyword to modify global variables inside functions.
+  
+# Docstring Testing ('control_flow.py')
+
+- Purpose: Demonstrates how to integrate tests directly within function docstrings using `doctest`.
+- Features:
+  - Functions include embedded tests that can be run using the `doctest` module.
+  - Example: Testing the `even_or_odd` function for different numbers.
+  
+# Control flow practical (`cfexercises1.py`)
+
+- Purpose: Utility functions for basic mathematical and sorting operations.
+- Features:
+  - Functions such as `foo_1` (square root), `foo_2` (maximum of two values), and `foo_3` (sorting three values).
+  - Factorial calculation implemented iteratively, recursively, and using a `while` loop.
+  - Functions can be tested by running the `main()` function.
+  - Illustrates how loops operate under different conditions.
+- How to Use:
+  - Call any of the `foo_x` functions directly, or run the script to see test cases.
+  
+# Loops and list comprehensions practical ('lc1.py, lc2.py, dictionary.py, tuple.py')
+
+- Purpose: Basic loops and list comprehensions that make the terminal print something useful.
+- Features:
+  - Loops/list comprehensions that print latin names, common names and mean body weight of birds.
+  - Loops/list comprehensions that print months by specific rainfall amounts.
+  - Loops that populates a dictionary with mammals.
+- How to use: 
+  - Call any of the functions directly, or run the script.
+  
+# Align DNA seqs practical ('align_seqs.py')
+
+- Purpose: Aligns two sequences of DNA to see what combination has the highest similarity.
+- Features: 
+  - Reads sequences from a CSV file using 'csv.reader'.
+  - Aligns the sequences by calculating the alignment score with a scoring function.
+  - Outputs the best alignment and score into a text file stored in the '../results' directory.
+  
+# Missing oaks ('oaks_debug.py')
+
+- Purpose: Searches through a csv file and finds oaks which are then outputted into a folder in '../results'. Original file contained bugs that were removed.
+- Features:
+  - Defines oaks (all trees that have a genus name being 'quercus'.
+  - Reads a csv file containing all trees in question.
+  - Finds the oaks and prints them all into a file in the '../results' folder.
+
+# Dependencies
+
+- Python 3.x
+- Modules:
+  - `csv` (standard library)
+  - `os` (standard library)
+  - `sys` (standard library)
+  - `pickle` (standard library)
+  - `doctest` (optional for docstring testing)
+
+# Author
+
+Sean Barry
+Contact: sb4524@ic.ac.uk
+
+**********************************************************************
+
+Found following files in results directory: alignment_result!.txt, JustOaksData.csv...
+
+Ideally, Results directory should be empty other than, perhaps a .gitkeep. 
+
+ 0.5 pts deducted per results file 
+
+Current Points = 99.0
+
+Found 23 code files: basic_io3.py, loops.py, oaks.py, basic_io2.py, basic_io1.py, basic_csv.py, boilerplate.py, FirstExample.tex, test_control_flow.py, sysargv.py, oaks_debugme.py, MyExampleScript.py, using_name.py, scope.py, dictionary.py, control_flow.py, tuple.py, align_seqs.py, lc1.py, cfexercises2.py, debugme.py, lc2.py, cfexercises1.py
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file basic_io3.py...
+
+File contents are:
+
+**********************************************************************
+#############################
+# STORING OBJECTS
+#############################
+# To save an object (even complex) for later use
+my_dictionary = {"a key": 10, "another key": 11}
+
+import pickle
+
+f = open('../sandbox/testp.p','wb') ## note the b: accept binary files
+pickle.dump(my_dictionary, f)
+f.close()
+
+## Load the data again
+f = open('../sandbox/testp.p','rb')
+another_dictionary = pickle.load(f)
+f.close()
+
+print(another_dictionary)
+
+
+**********************************************************************
+
+Testing basic_io3.py...
+
+basic_io3.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 97.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+{'a key': 10, 'another key': 11}
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.02765s
+
+======================================================================
+Inspecting script file loops.py...
+
+File contents are:
+
+**********************************************************************
+# FOR loops
+for i in range(5):
+    print(i)
+    
+my_list = [0, 2, "geronimo!", 3.0, True, False]
+for k in my_list:
+    print(k)
+    
+total = 0
+smmands = [0, 1, 11, 111, 1111]
+for s in summands:
+    total = total + s
+    print(total)
+    
+# WHILE loop
+z = 0
+while z < 100:
+    z = z + 1
+    print(z)
+
+**********************************************************************
+
+Testing loops.py...
+
+loops.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 95.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+0
+1
+2
+3
+4
+0
+2
+geronimo!
+3.0
+True
+False
+
+**********************************************************************
+
+Encountered error (or warning):
+
+***IGNORE IF THIS ERROR IS EXPECTED AS PART OF AN IN-CLASS EXERCISE***
+
+Traceback (most recent call last):
+  File "/home/mhasoba/Documents/Teaching/IC_CMEE/2024-25/Coursework/StudentRepos/SeanBarry_sb4524/week2/code/loops.py", line 11, in <module>
+    for s in summands:
+             ^^^^^^^^
+NameError: name 'summands' is not defined. Did you mean: 'smmands'?
+
+======================================================================
+Inspecting script file oaks.py...
+
+File contents are:
+
+**********************************************************************
+## Finds just those taxa that are oak trees from a list of species
+
+taxa = [ 'Quercus robur',
+         'Fraxinus excelsior',
+         'Pinus sylvestris',
+         'Quercus cerris',
+         'Quercus petraea',
+       ]
+
+def is_an_oak(name):
+    return name.lower().startswith('quercus ')
+
+##Using for loops
+oaks_loops = set()
+for species in taxa:
+    if is_an_oak(species):
+        oaks_loops.add(species)
+print(oaks_loops)
+
+##Using list comprehensions   
+oaks_lc = set([species for species in taxa if is_an_oak(species)])
+print(oaks_lc)
+
+##Get names in UPPER CASE using for loops
+oaks_loops = set()
+for species in taxa:
+    if is_an_oak(species):
+        oaks_loops.add(species.upper())
+print(oaks_loops)
+
+##Get names in UPPER CASE using list comprehensions
+oaks_lc = set([species.upper() for species in taxa if is_an_oak(species)])
+print(oaks_lc)
+
+**********************************************************************
+
+Testing oaks.py...
+
+oaks.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 92.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+{'Quercus cerris', 'Quercus petraea', 'Quercus robur'}
+{'Quercus cerris', 'Quercus petraea', 'Quercus robur'}
+{'QUERCUS PETRAEA', 'QUERCUS ROBUR', 'QUERCUS CERRIS'}
+{'QUERCUS PETRAEA', 'QUERCUS ROBUR', 'QUERCUS CERRIS'}
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.02498s
+
+======================================================================
+Inspecting script file basic_io2.py...
+
+File contents are:
+
+**********************************************************************
+#############################
+# FILE OUTPUT
+#############################
+# Save the elements of a list to a file
+list_to_save = range(100)
+
+f = open('../sandbox/testout.txt','w')
+for i in list_to_save:
+    f.write(str(i) + '\n') ## Add a new line at the end
+
+f.close()
+
+**********************************************************************
+
+Testing basic_io2.py...
+
+basic_io2.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 90.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.02088s
+
+======================================================================
+Inspecting script file basic_io1.py...
+
+File contents are:
+
+**********************************************************************
+#############################
+# FILE INPUT
+#############################
+# Open a file for reading
+f = open('../sandbox/test.txt', 'r')
+# use "implicit" for loop:
+# if the object is a file, python will cycle over lines
+for line in f:
+    print(line)
+
+# close the file
+f.close()
+
+# Same example, skip blank lines
+f = open('../sandbox/test.txt', 'r')
+for line in f:
+    if len(line.strip()) > 0:
+        print(line)
+
+f.close()
+
+
+**********************************************************************
+
+Testing basic_io1.py...
+
+basic_io1.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 88.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+First Line
+
+Second Line
+
+
+
+Third Line
+
+
+
+Fourth Line
+
+First Line
+
+Second Line
+
+Third Line
+
+Fourth Line
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.02227s
+
+======================================================================
+Inspecting script file basic_csv.py...
+
+File contents are:
+
+**********************************************************************
+import csv
+
+# Read a file containing:
+# 'Species','Infraorder','Family','Distribution','Body mass male (Kg)'
+with open('../data/testcsv.csv','r') as f:
+
+    csvread = csv.reader(f)
+    temp = []
+    for row in csvread:
+        temp.append(tuple(row))
+        print(row)
+        print("The species is", row[0])
+
+# write a file containing only species name and Body mass
+with open('../data/testcsv.csv','r') as f:
+    with open('../data/bodymass.csv','w') as g:
+
+        csvread = csv.reader(f)
+        csvwrite = csv.writer(g)
+        for row in csvread:
+            print(row)
+            csvwrite.writerow([row[0], row[4]])
+
+
+**********************************************************************
+
+Testing basic_csv.py...
+
+basic_csv.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 86.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+['Species', 'Infraorder', 'Family', 'Distribution', 'Body mass male (Kg)']
+The species is Species
+['Daubentonia_madagascariensis', 'Chiromyiformes ', 'Daubentoniidae', 'Madagascar', '2.7']
+The species is Daubentonia_madagascariensis
+['Allocebus_trichotis', 'Lemuriformes', 'Cheirogaleidae', 'Madagascar', '0.1']
+The species is Allocebus_trichotis
+['Avahi_laniger', 'Lemuriformes', 'Indridae', 'America', '1.03']
+The species is Avahi_laniger
+['Avahi_occidentalis', 'Lemuriformes', 'Indridae', 'Madagasc
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.03326s
+
+======================================================================
+Inspecting script file boilerplate.py...
+
+File contents are:
+
+**********************************************************************
+#!/usr/bin/env python3
+
+"""Prints 'this is a boiler plate'"""
+
+__appname__ = '[python boilerplate]'
+__author__ = 'Sean Barry (sb4524@ic.ac.uk)'
+__version__ = '0.0.1'
+__license__ = "NA"
+
+## imports ##
+import sys # module to interface our program with the operating system
+
+## constants ##
+
+
+## functions ##
+def main(argv):
+    """ Main entry point of the program """
+    print('This is a boilerplate') # NOTE: indented using two tabs or 4 spaces
+    return 0
+    sys.exit("I am exiting now")
+
+if __name__ == "__main__": 
+    """Makes sure the "main" function is called from command line"""  
+    status = main(sys.argv)
+    sys.exit(status)
+
+**********************************************************************
+
+Testing boilerplate.py...
+
+boilerplate.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more docstrings and functions
+
+Current Points = 86.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+This is a boilerplate
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.02034s
+
+======================================================================
+Inspecting script file FirstExample.tex...
+
+File contents are:
+
+**********************************************************************
+\documentclass[12pt]{article}
+
+\title{A Simple Document}
+
+\author{Sean Barry}
+
+\date{}
+
+\begin{document}
+    \maketitle
+    
+    \begin{abstract}
+    This paper analyzes a seminal equation in population biology.
+    \end{abstract}
+    
+    \section{Introduction}
+    Blah Blah
+    
+    \section{Materials \& Methods}
+    
+    A foundational equation of population biology is:
+    
+    \begin{equation}
+    \frac{dN}{dt} = r N (1 - \frac{N}{K})
+    \end{equation}
+    
+    It was first proposed by Verhulst in 1838 \cite{verhulst1838notice}.
+    
+    \bibliographystyle{plain}
+    
+    \bibliography{FirstBiblio}
+    
+\end{document}
+
+**********************************************************************
+
+Testing FirstExample.tex...
+
+======================================================================
+Inspecting script file test_control_flow.py...
+
+File contents are:
+
+**********************************************************************
+#!/usr/bin/env python3
+
+"""Some functions exemplifying the use of control statements"""
+#docstrings are considered part of the running code (normal comments are
+#stripped). Hence, you can access your docstrings at run time.
+__author__ = 'Sean Barry (sb4524@ic.ac.uk)'
+__version__ = '0.0.1'
+
+import sys
+import doctest # Import the doctest module
+
+def even_or_odd(x=0):
+    """Find whether a number x is even or odd.
+      
+    >>> even_or_odd(10)
+    '10 is Even!'
+    
+    >>> even_or_odd(5)
+    '5 is Odd!'
+        
+    in case of negative numbers, the positive is taken:    
+    >>> even_or_odd(-2)
+    '-2 is Even!'
+    
+    """
+    #Define function to be tested
+    if x % 2 == 0:
+        return f"{x} is Even!"
+    return f"{x} is Odd!"
+
+def main(argv): 
+    print(even_or_odd(22))
+    print(even_or_odd(33))
+    return 0
+
+if (__name__ == "__main__"):
+    status = main(sys.argv)
+
+doctest.testmod()   # To run with embedded tests
+
+**********************************************************************
+
+Testing test_control_flow.py...
+
+test_control_flow.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more docstrings and functions
+
+Missing docstring, either in one or functions and/or at the script level
+
+Current Points = 86.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+22 is Even!
+33 is Odd!
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.05910s
+
+======================================================================
+Inspecting script file sysargv.py...
+
+File contents are:
+
+**********************************************************************
+#!/usr/bin/env python3
+
+import sys
+print("This is the name of the script: ", sys.argv[0])
+print("Number of arguments: ", len(sys.argv))
+print("The arguments are: ", str(sys.argv))
+
+**********************************************************************
+
+Testing sysargv.py...
+
+sysargv.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 84.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+This is the name of the script:  sysargv.py
+Number of arguments:  1
+The arguments are:  ['sysargv.py']
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.02229s
+
+======================================================================
+Inspecting script file oaks_debugme.py...
+
+File contents are:
+
+**********************************************************************
+import csv
+import sys
+
+# Define function with doctests
+def is_an_oak(name):
+    """
+    Returns True if name starts with 'quercus' (case-insensitive, spelling sensitive)
+    
+    >>> is_an_oak('Quercus robur')
+    True
+    >>> is_an_oak('Fagus sylvatica')
+    False
+    >>> is_an_oak('QUERCUS cerris')
+    True
+    >>> is_an_oak('Quercus')
+    True
+    >>> is_an_oak('quercus')
+    True
+    """
+    return name.lower().startswith('quercus')
+
+def main(argv): 
+    f = open('../data/TestOaksData.csv','r')
+    g = open('../results/JustOaksData.csv','w')
+    taxa = csv.reader(f)
+    csvwrite = csv.writer(g)
+    oaks = set()
+    
+    next(taxa) # skips 'genus' and 'species' since these are meant to be column headers
+    
+    for row in taxa:
+        print("The genus is: ") 
+        print(row[0] + '\n')
+        if is_an_oak(row[0]):
+            print('FOUND AN OAK!!!\n')
+            csvwrite.writerow([row[0], row[1]])    
+
+    return 0
+    
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()  # This will run the doctests
+    status = main(sys.argv)
+
+
+**********************************************************************
+
+Testing oaks_debugme.py...
+
+oaks_debugme.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more docstrings and functions
+
+Missing docstring, either in one or functions and/or at the script level
+
+Current Points = 83.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+The genus is: 
+Quercus
+
+FOUND AN OAK!!!
+
+The genus is: 
+Fraxinus
+
+The genus is: 
+Pinus
+
+The genus is: 
+Quercus
+
+FOUND AN OAK!!!
+
+The genus is: 
+Quercus
+
+FOUND AN OAK!!!
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.07641s
+
+======================================================================
+Inspecting script file MyExampleScript.py...
+
+File contents are:
+
+**********************************************************************
+def foo(x):
+    x *= x
+    print(x)
+
+foo(2)
+
+**********************************************************************
+
+Testing MyExampleScript.py...
+
+MyExampleScript.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 80.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+4
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.03255s
+
+======================================================================
+Inspecting script file using_name.py...
+
+File contents are:
+
+**********************************************************************
+#!/usr/bin/env python3
+# Filename: using_name.py
+
+if __name__ == '__main__':
+    print('This program is being run by itself!')
+else:
+    print('I am being imported from another script/program/module!')
+    
+print("This module's name is: " + __name__)
+
+**********************************************************************
+
+Testing using_name.py...
+
+using_name.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 78.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+This program is being run by itself!
+This module's name is: __main__
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.02455s
+
+======================================================================
+Inspecting script file scope.py...
+
+File contents are:
+
+**********************************************************************
+_a_global = 10 # a global variable
+
+if _a_global >= 5:
+    _b_global = _a_global + 5 # also a global variable
+    
+print("Before calling a_function, outside the function, the value of _a_global is", _a_global)
+print("Before calling a_function, outside the function, the value of _b_global is", _b_global)
+
+def a_function():
+    _a_global = 4 # a local variable
+    
+    if _a_global >= 4:
+        _b_global = _a_global + 5 # also a local variable
+    
+    _a_local = 3
+    
+    print("Inside the function, the value of _a_global is", _a_global)
+    print("Inside the function, the value of _b_global is", _b_global)
+    print("Inside the function, the value of _a_local is", _a_local)
+    
+a_function()
+
+print("After calling a_function, outside the function, the value of _a_global is (still)", _a_global)
+print("After calling a_function, outside the function, the value of _b_global is (still)", _b_global)
+#print("After calling a_function, outside the function, the value of _a_local is ", _a_local)
+
+_a_global = 10
+
+def a_function():
+    _a_local = 4
+    
+    print("Inside the function, the value _a_local is", _a_local)
+    print("Inside the function, the value of _a_global is", _a_global)
+    
+a_function()
+
+print("Outside the function, the value of _a_global is", _a_global)
+
+_a_global = 10
+
+def a_function():
+    global _a_global
+    _a_global = 5
+    _a_local = 4
+    
+    print("Inside the function, the value of _a_global is", _a_global)
+    print("Inside the function, the value _a_local is", _a_local)
+    
+a_function()
+
+print("After calling a_function, outside the function, the value of _a_global now is", _a_global)
+
+def a_function():
+    _a_global = 10
+
+    def _a_function2():
+        global _a_global
+        _a_global = 20
+    
+    print("Before calling a_function2, value of _a_global is", _a_global)
+
+    _a_function2()
+    
+    print("After calling a_function2, value of _a_global is", _a_global)
+    
+a_function()
+
+print("The value of a_global in main workspace / namespace now is", _a_global)
+
+_a_global = 10
+
+def a_function():
+
+    def _a_function2():
+        global _a_global
+        _a_global = 20
+    
+    print("Before calling a_function2, value of _a_global is", _a_global)
+
+    _a_function2()
+    
+    print("After calling a_function2, value of _a_global is", _a_global)
+
+a_function()
+
+print("The value of a_global in main workspace / namespace is", _a_global)
+
+**********************************************************************
+
+Testing scope.py...
+
+scope.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 73.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Before calling a_function, outside the function, the value of _a_global is 10
+Before calling a_function, outside the function, the value of _b_global is 15
+Inside the function, the value of _a_global is 4
+Inside the function, the value of _b_global is 9
+Inside the function, the value of _a_local is 3
+After calling a_function, outside the function, the value of _a_global is (still) 10
+After calling a_function, outside the function, the value of _b_global is (still) 15
+Inside the function, the valu
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.02907s
+
+======================================================================
+Inspecting script file dictionary.py...
+
+File contents are:
+
+**********************************************************************
+taxa = [ ('Myotis lucifugus','Chiroptera'),
+         ('Gerbillus henleyi','Rodentia',),
+         ('Peromyscus crinitus', 'Rodentia'),
+         ('Mus domesticus', 'Rodentia'),
+         ('Cleithrionomys rutilus', 'Rodentia'),
+         ('Microgale dobsoni', 'Afrosoricida'),
+         ('Microgale talazaci', 'Afrosoricida'),
+         ('Lyacon pictus', 'Carnivora'),
+         ('Arctocephalus gazella', 'Carnivora'),
+         ('Canis lupus', 'Carnivora'),
+        ]
+
+# Write a python script to populate a dictionary called taxa_dic derived from
+# taxa so that it maps order names to sets of taxa and prints it to screen.
+# 
+# An example output is:
+#  
+# 'Chiroptera' : set(['Myotis lucifugus']) ... etc. 
+# OR, 
+# 'Chiroptera': {'Myotis  lucifugus'} ... etc
+
+#### Your solution here #### 
+taxa_dic = {}
+
+for species, order in taxa:
+    if order not in taxa_dic:
+        taxa_dic[order] = set()
+    taxa_dic[order].add(species)
+    
+print(taxa_dic)
+
+# Now write a list comprehension that does the same (including the printing after the dictionary has been created)  
+ 
+#### Your solution here ####
+taxa_dic_c = {order: {species for species, o in taxa if o == order} for _, order in taxa}
+
+print(taxa_dic_c)
+
+**********************************************************************
+
+Testing dictionary.py...
+
+dictionary.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 71.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+{'Chiroptera': {'Myotis lucifugus'}, 'Rodentia': {'Mus domesticus', 'Peromyscus crinitus', 'Gerbillus henleyi', 'Cleithrionomys rutilus'}, 'Afrosoricida': {'Microgale talazaci', 'Microgale dobsoni'}, 'Carnivora': {'Lyacon pictus', 'Arctocephalus gazella', 'Canis lupus'}}
+{'Chiroptera': {'Myotis lucifugus'}, 'Rodentia': {'Mus domesticus', 'Peromyscus crinitus', 'Gerbillus henleyi', 'Cleithrionomys rutilus'}, 'Afrosoricida': {'Microgale talazaci', 'Microgale dobsoni'}, 'Carnivora': {'Lyacon pictus'
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.03145s
+
+======================================================================
+Inspecting script file control_flow.py...
+
+File contents are:
+
+**********************************************************************
+#!/usr/bin/env python3
+
+"""Prints 'this is a boiler plate'"""
+
+__appname__ = '[python boilerplate]'
+__author__ = 'Sean Barry (sb4524@ic.ac.uk)'
+__version__ = '0.0.1'
+__license__ = "NA"
+
+## imports ##
+import sys # module to interface our program with the operating system
+
+## constants ##
+
+
+## functions ##
+def main(argv):
+    """ Main entry point of the program """
+    print('This is a boilerplate') # NOTE: indented using two tabs or 4 spaces
+    return 0
+    sys.exit("I am exiting now")
+
+if __name__ == "__main__": 
+    """Makes sure the "main" function is called from command line"""  
+    status = main(sys.argv)
+    sys.exit(status)
+    
+#!/usr/bin/env python3
+
+"""Some functions exemplifying the use of control statements"""
+#docstrings are considered part of the running code (normal comments are
+#stripped). Hence, you can access your docstrings at run time.
+__author__ = 'Sean Barry (sb4524@ic.ac.uk)'
+__version__ = '0.1.0'
+
+import sys
+
+def even_or_odd(x=0): # if not specified, x should take value 0.
+
+    """Find whether a number x is even or odd."""
+    if x % 2 == 0: #The conditional if
+        return f"{x} is Even!"
+    return f"{x} is Odd!"
+
+def largest_divisor_five(x=120):
+    """Find which is the largest divisor of x among 2,3,4,5."""
+    largest = 0
+    if x % 5 == 0:
+        largest = 5
+    elif x % 4 == 0: #means "else, if"
+        largest = 4
+    elif x % 3 == 0:
+        largest = 3
+    elif x % 2 == 0:
+        largest = 2
+    else: # When all other (if, elif) conditions are not met
+        return f"No divisor found for {x}!" # Each function can return a value or a variable.
+    return f"The largest divisor of {x} is {largest}"
+
+def is_prime(x=70):
+    """Find whether an integer is prime."""
+    for i in range(2, x): #  "range" returns a sequence of integers
+        if x % i == 0:
+            print(f"{x} is not a prime: {i} is a divisor") 
+            return False
+    print(f"{x} is a prime!")
+    return True 
+
+def find_all_primes(x=22):
+    """Find all the primes up to x"""
+    allprimes = []
+    for i in range(2, x + 1):
+        if is_prime(i):
+            allprimes.append(i)
+    print(f"There are {len(allprimes)} primes between 2 and {x}")
+    return allprimes
+      
+def main(argv):
+    print(even_or_odd(22))
+    print(even_or_odd(33))
+    print(largest_divisor_five(120))
+    print(largest_divisor_five(121))
+    print(is_prime(60))
+    print(is_prime(59))
+    print(find_all_primes(100))
+    return 0
+
+if (__name__ == "__main__"):
+    status = main(sys.argv)
+    sys.exit(status)
+
+
+**********************************************************************
+
+Testing control_flow.py...
+
+control_flow.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more docstrings and functions
+
+Current Points = 71.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+This is a boilerplate
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.02700s
+
+======================================================================
+Inspecting script file tuple.py...
+
+File contents are:
+
+**********************************************************************
+birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
+          ('Delichon urbica','House martin',19),
+          ('Junco phaeonotus','Yellow-eyed junco',19.5),
+          ('Junco hyemalis','Dark-eyed junco',19.6),
+          ('Tachycineata bicolor','Tree swallow',20.2),
+        )
+
+# Birds is a tuple of tuples of length three: latin name, common name, mass.
+# write a (short) script to print these on a separate line or output block by
+# species 
+# 
+# A nice example output is:
+# 
+# Latin name: Passerculus sandwichensis Common name: Savannah sparrow Mass: 18.7
+# ... etc.
+
+for bird in birds:
+    latin_name, common_name, mass = bird
+    print(f"Latin name: {latin_name} Common name: {common_name} Mass: {mass}")
+
+**********************************************************************
+
+Testing tuple.py...
+
+tuple.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 69.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Latin name: Passerculus sandwichensis Common name: Savannah sparrow Mass: 18.7
+Latin name: Delichon urbica Common name: House martin Mass: 19
+Latin name: Junco phaeonotus Common name: Yellow-eyed junco Mass: 19.5
+Latin name: Junco hyemalis Common name: Dark-eyed junco Mass: 19.6
+Latin name: Tachycineata bicolor Common name: Tree swallow Mass: 20.2
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.03003s
+
+======================================================================
+Inspecting script file align_seqs.py...
+
+File contents are:
+
+**********************************************************************
+import sys
+import csv
+import os
+
+# Function to read sequences from a CSV file
+def read_sequences(filename):
+    with open(filename, 'r') as file:
+        reader = csv.reader(file)
+        sequences = [row[0] for row in reader]  # Assumes each sequence is in a separate row
+    return sequences[0], sequences[1]
+
+# Function to calculate the alignment score
+def calculate_score(s1, s2, l1, l2, startpoint):
+    score = 0
+    matched = ""
+    for i in range(l2):
+        if (i + startpoint) < l1 and s1[i + startpoint] == s2[i]:
+            matched += "*"
+            score += 1
+        else:
+            matched += "-"
+    return score, "." * startpoint + matched
+
+# Function to find the best alignment
+def find_best_align(seq1, seq2):
+    l1, l2 = len(seq1), len(seq2)
+    # Ensure s1 is the longer sequence
+    if l1 >= l2:
+        s1, s2 = seq1, seq2
+    else:
+        s1, s2 = seq2, seq1
+        l1, l2 = l2, l1
+
+    best_align = ""
+    best_score = -1
+    for i in range(l1):
+        score, alignment = calculate_score(s1, s2, l1, l2, i)
+        if score > best_score:
+            best_score = score
+            best_align = "." * i + s2
+
+    return best_align, s1, best_score
+
+# Function to write alignment and score to a file in the ../results directory
+def write_align(filename, best_align, s1, best_score):
+    # Define output path in the parent results directory
+    output_path = os.path.join("..", "results", filename)
+    with open(output_path, 'w') as file:
+        file.write(f"Best alignment:\n{best_align}\n{s1}\n")
+        file.write(f"Best score: {best_score}\n")
+    return output_path
+
+# Main execution block
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python align_seqs.py <filename.csv>")
+        sys.exit(1)
+    
+    input_file = sys.argv[1]
+    output_filename = "alignment_result!.txt"
+    
+    try:
+        # Read sequences from input CSV file
+        seq1, seq2 = read_sequences(input_file)
+        
+        # Find the best alignment and score
+        best_align, s1, best_score = find_best_align(seq1, seq2)
+        
+        # Write the result to the output file in the ../results directory
+        output_path = write_align(output_filename, best_align, s1, best_score)
+        print(f"Best alignment and score saved to {output_path}")
+    
+    except Exception as e:
+        print(f"Error: {e}")
+
+
+**********************************************************************
+
+Testing align_seqs.py...
+
+align_seqs.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 65.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Usage: python align_seqs.py <filename.csv>
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.04096s
+
+======================================================================
+Inspecting script file lc1.py...
+
+File contents are:
+
+**********************************************************************
+birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
+          ('Delichon urbica','House martin',19),
+          ('Junco phaeonotus','Yellow-eyed junco',19.5),
+          ('Junco hyemalis','Dark-eyed junco',19.6),
+          ('Tachycineata bicolor','Tree swallow',20.2),
+         )
+
+#(1) Write three separate list comprehensions that create three different
+# lists containing the latin names, common names and mean body masses for
+# each species in birds, respectively. 
+
+# (2) Now do the same using conventional loops (you can choose to do this 
+# before 1 !). 
+
+# A nice example out out is:
+# Step #1:
+# Latin names:
+# ['Passerculus sandwichensis', 'Delichon urbica', 'Junco phaeonotus', 'Junco hyemalis', 'Tachycineata bicolor']
+# ... etc.
+
+# Lists using list comprehensions
+latin_names = [bird[0] for bird in birds]
+common_names = [bird[1] for bird in birds]
+mean_bm = [bird[2] for bird in birds]
+
+print(latin_names)
+print(common_names)
+print(mean_bm)
+
+# Lists using loops
+latin_names_l = []
+common_names_l = []
+mean_bm_l = []
+
+for bird in birds
+    latin_names_l.append(bird[0])
+    common_names_l.append(bird[1])
+    mean_bm_l.append(bird[2])
+    
+print(latin_names_l)
+print(common_names_l)
+print(mean_bm_l)
+
+**********************************************************************
+
+Testing lc1.py...
+
+lc1.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 63.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+
+***IGNORE IF THIS ERROR IS EXPECTED AS PART OF AN IN-CLASS EXERCISE***
+
+  File "/home/mhasoba/Documents/Teaching/IC_CMEE/2024-25/Coursework/StudentRepos/SeanBarry_sb4524/week2/code/lc1.py", line 35
+    for bird in birds
+                     ^
+SyntaxError: expected ':'
+
+======================================================================
+Inspecting script file cfexercises2.py...
+
+File contents are:
+
+**********************************************************************
+########################
+def hello_1(x):
+    for j in range(x):
+        if j % 3 == 0:
+            print('hello')
+    print(' ')
+
+hello_1(12)
+
+########################
+def hello_2(x):
+    for j in range(x):
+        if j % 5 == 3:
+            print('hello')
+        elif j % 4 == 3:
+            print('hello')
+    print(' ')
+
+hello_2(12)
+
+########################
+def hello_3(x, y):
+    for i in range(x, y):
+        print('hello')
+    print(' ')
+
+hello_3(3, 17)
+
+########################
+def hello_4(x):
+    while x != 15:
+        print('hello')
+        x = x + 3
+    print(' ')
+
+hello_4(0)
+
+########################
+def hello_5(x):
+    while x < 100:
+        if x == 31:
+            for k in range(7):
+                print('hello')
+        elif x == 18:
+            print('hello')
+        x = x + 1
+    print(' ')
+
+hello_5(12)
+
+# WHILE loop with BREAK
+def hello_6(x, y):
+    while x: # while x is True
+        print("hello! " + str(y))
+        y += 1 # increment y by 1 
+        if y == 6:
+            break
+    print(' ')
+
+hello_6 (True, 0)
+
+**********************************************************************
+
+Testing cfexercises2.py...
+
+cfexercises2.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 58.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+hello
+hello
+hello
+hello
+ 
+hello
+hello
+hello
+hello
+ 
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+ 
+hello
+hello
+hello
+hello
+hello
+ 
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+ 
+hello! 0
+hello! 1
+hello! 2
+hello! 3
+hello! 4
+hello! 5
+ 
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.03717s
+
+======================================================================
+Inspecting script file debugme.py...
+
+File contents are:
+
+**********************************************************************
+def buggyfunc(x):
+    y = x
+    for i in range(x):
+        y = y-1
+        z = x/y
+    return z
+
+buggyfunc(20)
+
+**********************************************************************
+
+Testing debugme.py...
+
+debugme.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 55.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+
+***IGNORE IF THIS ERROR IS EXPECTED AS PART OF AN IN-CLASS EXERCISE***
+
+Traceback (most recent call last):
+  File "/home/mhasoba/Documents/Teaching/IC_CMEE/2024-25/Coursework/StudentRepos/SeanBarry_sb4524/week2/code/debugme.py", line 8, in <module>
+    buggyfunc(20)
+  File "/home/mhasoba/Documents/Teaching/IC_CMEE/2024-25/Coursework/StudentRepos/SeanBarry_sb4524/week2/code/debugme.py", line 5, in buggyfunc
+    z = x/y
+        ~^~
+ZeroDivisionError: division by zero
+
+======================================================================
+Inspecting script file lc2.py...
+
+File contents are:
+
+**********************************************************************
+# Average UK Rainfall (mm) for 1910 by month
+# http://www.metoffice.gov.uk/climate/uk/datasets
+rainfall = (('JAN',111.4),
+            ('FEB',126.1),
+            ('MAR', 49.9),
+            ('APR', 95.3),
+            ('MAY', 71.8),
+            ('JUN', 70.2),
+            ('JUL', 97.1),
+            ('AUG',140.2),
+            ('SEP', 27.0),
+            ('OCT', 89.4),
+            ('NOV',128.4),
+            ('DEC',142.2),
+           )
+
+# (1) Use a list comprehension to create a list of month,rainfall tuples where
+# the amount of rain was greater than 100 mm.
+ 
+# (2) Use a list comprehension to create a list of just month names where the
+# amount of rain was less than 50 mm. 
+
+# (3) Now do (1) and (2) using conventional loops (you can choose to do 
+# this before 1 and 2 !). 
+
+# A good example output is:
+#
+# Step #1:
+# Months and rainfall values when the amount of rain was greater than 100mm:
+# [('JAN', 111.4), ('FEB', 126.1), ('AUG', 140.2), ('NOV', 128.4), ('DEC', 142.2)]
+# ... etc.
+
+# Finding months where rainfall exceeds 100mm using list comprehensions
+
+more_than_100mm = [(month, rain) for month, rain in rainfall if rain > 100]
+print(more_than_100mm)
+
+# Finding months where rainfall is below 50mm using same method
+
+less_than_50mm = [(month, rain) for month, rain in rainfall if rain < 50]
+print(less_than_50mm)
+
+# Step 1 using conventional loops
+more_than_100mm = []
+for month, rain in rainfall:
+    if rain > 100:
+        more_than_100mm.append((month, rain))
+
+print("Months and rainfall values when the amount of rain was greater than 100mm:")
+print(more_than_100mm)
+
+# Step 2 using conventional loops
+less_than_50mm = []
+for month, rain in rainfall:
+    if rain < 50:
+        less_than_50mm.append(month)
+
+print("Months where the amount of rain was less than 50mm:")
+print(less_than_50mm)
+
+**********************************************************************
+
+Testing lc2.py...
+
+lc2.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 53.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+[('JAN', 111.4), ('FEB', 126.1), ('AUG', 140.2), ('NOV', 128.4), ('DEC', 142.2)]
+[('MAR', 49.9), ('SEP', 27.0)]
+Months and rainfall values when the amount of rain was greater than 100mm:
+[('JAN', 111.4), ('FEB', 126.1), ('AUG', 140.2), ('NOV', 128.4), ('DEC', 142.2)]
+Months where the amount of rain was less than 50mm:
+['MAR', 'SEP']
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.02231s
+
+======================================================================
+Inspecting script file cfexercises1.py...
+
+File contents are:
+
+**********************************************************************
+#!/usr/bin/env python3
+
+"""Module with various utility functions for mathematical operations."""
+
+__author__ = 'Sean Barry (sb4524@ic.ac.uk)'
+__version__ = '0.1.0'
+
+import sys
+
+def foo_1(x):
+    """Return the square root of x."""
+    return x ** 0.5
+
+def foo_2(x, y):
+    """Return the larger of x and y."""
+    return x if x > y else y
+
+def foo_3(x, y, z):
+    """Sort and return x, y, z in ascending order."""
+    if x > y:
+        x, y = y, x
+    if y > z:
+        y, z = z, y
+    return [x, y, z]
+
+def foo_4(x):
+    """Calculate the factorial of x using iteration."""
+    result = 1
+    for i in range(1, x + 1):
+        result *= i
+    return result
+
+def foo_5(x):
+    """Calculate the factorial of x recursively."""
+    if x == 1:
+        return 1
+    return x * foo_5(x - 1)
+
+def foo_6(x):
+    """Calculate the factorial of x without an if statement."""
+    facto = 1
+    while x >= 1:
+        facto *= x
+        x -= 1
+    return facto
+
+def main(argv):
+    """Run test cases for each function in the module."""
+    print("Running test cases for each foo_x function...\n")
+    
+    print("foo_1(25):", foo_1(25))  # Should return the square root of 25
+    print("foo_2(10, 20):", foo_2(10, 20))  # Should return the larger of 10 and 20
+    print("foo_3(3, 1, 2):", foo_3(3, 1, 2))  # Should sort and return [1, 2, 3]
+    print("foo_4(5):", foo_4(5))  # Should return 120, the factorial of 5
+    print("foo_5(10):", foo_5(10))  # Should return 3628800, the factorial of 10
+    print("foo_6(6):", foo_6(6))  # Should return 720, the factorial of 6
+
+    print("\nDone!")
+
+if __name__ == "__main__":
+    main(sys.argv)
+
+
+**********************************************************************
+
+Testing cfexercises1.py...
+
+cfexercises1.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more docstrings and functions
+
+Current Points = 53.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Running test cases for each foo_x function...
+
+foo_1(25): 5.0
+foo_2(10, 20): 20
+foo_3(3, 1, 2): [1, 2, 3]
+foo_4(5): 120
+foo_5(10): 3628800
+foo_6(6): 720
+
+Done!
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.02600s
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 3 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Points for the Week = 53.5
+
+NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!
