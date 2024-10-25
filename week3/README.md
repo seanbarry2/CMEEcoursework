@@ -1,4 +1,4 @@
-**Week 3 Readme - Basics in R and Jupyter notebook**
+**Week 3 Readme - Basics in R (and Jupyter notebook)**
 
 This project focuses on teaching the basics of data wrangling and visualization in R. Key objectives include structuring raw data, making Rscripts, automating data manipulation, and producing clear, reproducible visualizations to reveal trends within the dataset. Additionally, a brief introduction into Jupyter notebook was completed, where the layout and basic usage of the program were clarified.
 
@@ -15,6 +15,7 @@ DataWrang.R: Main script for data wrangling, used to teach most basic commands i
 PoundHillData.csv: Raw data file containing species observations per quadrat, without headers. (Used as data for DataWrang.R)
 PoundHillMetaData.csv: Metadata file containing descriptions of the variables and sampling structure.
 EcolArchives-E089-52-D1.csv: Dataset that contains records of feeding interactions between predator and prey. (Used to teach basic plotting commands).
+MyFirstJupyterNb.ipynb: Jupyter notebook containing a few lines of code used to teach basics of Jupyter.
 
 **Author**
 Sean Barry
