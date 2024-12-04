@@ -1,0 +1,53 @@
+x <- c(1, 2, 3, 4, 8)
+
+y <- c(4, 3, 5, 7, 9)
+
+model <- (lm(y~x))
+
+model
+
+summary(model)
+
+lm(formula = y ~ x)
+
+anova(model)
+ 
+cov(x, y)
+
+var(x)
+
+var(y)
+
+plot(y~x)
+
+HANDOUTS
+H.6
+
+Exercise 1)
+library(WebPower)
+
+wp.t(d=0.11, alpha = 0.044, n1=300, n2=300, type = "two.sample")
+
+H.7
+
+Exercise 1)
+Slope = 12
+Sheep eaten = x
+Body mass = y
+
+For each step in x (for each sheep eaten) y moves up by 12 (12kg).
+A Longhorn dragon gains 12kg per sheep.
+
+Exercise 2)
+Slope = 8
+y0 = x0 (intercept is 0)
+Moth species = y
+Day of catching moths = x
+
+After 10 days (10x), the slope will be at 10x * 8 = 80.
+After 10 days of moth catching 80 moths are expected to be caught.
+
+Exercise 3)
+y~-1+2x-0.15x^2
+x = years
+y = reproductive success

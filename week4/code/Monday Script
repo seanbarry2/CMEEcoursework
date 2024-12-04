@@ -1,0 +1,23 @@
+sd_tars <- sd(data$Tarsus, na.rm = TRUE)
+print(sd_tars)
+
+no_nas <- sum(!is.na(data$Tarsus))
+print(no_nas)
+
+SE <- sqrt((sd_tars ^ 2) / no_nas)
+print(SE)
+
+
+tars_2001 <- na.omit(subset(data, Year == 2001, select = Tarsus))
+print(tars_2001)
+
+sd_tars_2001 <- sd(tars_2001$Tarsus)
+print(sd_tars_2001)
+
+n2001 <- sum(!is.na(tarsus_2001$Tarsus))
+print(n2001)
+
+SE2001 <- sqrt((sd_tars_2001 ^ 2) / n2001)
+print(SE2001)
+
+t.test(tars_2001$Tarsus, mu = 18.5, na.rm = T)

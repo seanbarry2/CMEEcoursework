@@ -1,0 +1,38 @@
+Handout 1
+
+library(tidyverse)
+
+How	many	repeats	are	there	per	bird	per	year?
+
+bird_repeats <- data %>%
+  group_by(BirdID, Year) %>%
+  summarise(Count = n()) %>%
+  ungroup()
+
+print(bird_repeats)
+
+How	many	individuals	did	we	capture	per	year	for	each	sex?	Compute	the	numbers,	
+devise	a	useful	table	format,	and	fill	it	in.
+
+indiv_counts <- data %>%
+  group_by(Year, Sex) %>%
+  summarise(Individuals_Captured = n_distinct(BirdID)) %>%
+  ungroup()
+
+print(indiv_counts)
+
+individual_counts_wide <- indiv_counts %>%
+  pivot_wider(names_from = Sex, values_from = Individuals_Captured, values_fill = 0)
+
+print(individual_counts_wide)
+
+Think	about	how	you	can	communicate	(1)	and	(2)	best	in	tables,	and	how	you	can
+visualise	(1)	and	(2) using	plots.	Produce several	solutions,	and	discuss with	GTA	
+and	your	peers which	the	pros	and	cons	for	each	solution	to	communicate	and	
+visualize	the data	structure	for	(1)	and	(2).
+
+
+
+Write	two	results	sections	for	(1)	and	(2),	and	ask	your	GTA	for	feedback.	Each	
+result	section	should	use	different	means	of	communicating	the	results,	visually	and	
+in	a	table.

@@ -1,0 +1,6 @@
+Calculate prey ~ predator mass regressions for:
+insectivores (larva/juvenile)
+piscivorous (adult, juvenile, larva/juvenile, postlarva/juvenile, postlarva)
+planktivorous (adult, juvenile, larva, larva/juvenile, postlarva, postlarva/juvenile)
+predacious (adult, juvenile, larva, larva/juvenile, postlarva, postlarva/juvenile)
+predacious/piscivorous (adult)

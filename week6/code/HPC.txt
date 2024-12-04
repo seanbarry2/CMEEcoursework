@@ -1,0 +1,8 @@
+sftp sb4524@login.hpc.imperial.ac.uk
+ssh sb4524@login.hpc.imperial.ac.uk
+
+mEqsin-9nidjo-pynmet
+
+qsub -J 1-100 run_script.sh
+
+rm run_script.sh.*
