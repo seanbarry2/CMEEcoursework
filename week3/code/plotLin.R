@@ -35,4 +35,6 @@ p <- p + geom_text(aes(x = 60, y = 0,
 
 p
 
-ggsave("MyLinReg.pdf", plot = p)
+pdf("../results/MyLinReg.pdf")
+print(p)
+dev.off()

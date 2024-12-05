@@ -46,6 +46,7 @@ sapply_sample <- function(popn, n, num) {
     return(result5)
 }
 
+# Generate population and set parameters
 set.seed(12345)
 popn <- rnorm(10000) # Generate the population
 hist(popn)
@@ -53,17 +54,24 @@ hist(popn)
 n <- 100 # sample size for each experiment
 num <- 10000 # Number of times to rerun the experiment
 
+# Compare performance of different sampling techniques
+
 print("Using loops without preallocation on a vector took:" )
 print(system.time(loopy_sample1(popn, n, num)))
+# Slowest due to repeated memory allocation for the vector in each iteration.
 
 print("Using loops with preallocation on a vector took:" )
 print(system.time(loopy_sample2(popn, n, num)))
+# Faster than loopy_sample1 due to preallocation, avoiding memory reallocation.
 
 print("Using loops with preallocation on a list took:" )
 print(system.time(loopy_sample3(popn, n, num)))
+# Similar to preallocation on a vector, but may be more suitable for storing diverse data.
 
 print("Using the vectorized sapply function (on a list) took:" )
 print(system.time(sapply_sample(popn, n, num)))
+# Faster than loops, as sapply simplifies to a vector efficiently.
 
 print("Using the vectorized lapply function (on a list) took:" )
 print(system.time(lapply_sample(popn, n, num)))
+# Similar to sapply in speed, but returns a list instead of a vector.

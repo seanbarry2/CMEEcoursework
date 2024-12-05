@@ -46,5 +46,9 @@ p <- p + scale_x_continuous("My x axis",
     theme_bw() + 
     theme(legend.position = "none")
 
+p
+
 # Save the plot as a PDF
-ggsave("MyBars.pdf", plot = p)
+pdf("../results/MyBars.pdf")
+print(p)
+dev.off()

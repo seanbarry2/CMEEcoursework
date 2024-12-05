@@ -1,40 +1,62 @@
-# Loading required packages
-library(ggplot2)
+# Check and load required packages
+# Ensure the 'ggplot2' package is installed; stop execution with an error message if not
+if (!requireNamespace("ggplot2", quietly = TRUE)) {
+  stop("Package 'ggplot2' is required but not installed. Install it with install.packages('ggplot2').")
+}
+library(ggplot2)  # Load the ggplot2 library for creating visualizations
 
-build_ellipse <- function(hradius, vradius){ # function that returns an ellipse
-  npoints = 250
-  a <- seq(0, 2 * pi, length = npoints + 1)
-  x <- hradius * cos(a)
-  y <- vradius * sin(a)  
-  return(data.frame(x = x, y = y))
+# Function to generate an ellipse
+build_ellipse <- function(hradius, vradius) { 
+  # Arguments:
+  #   hradius: Horizontal radius of the ellipse
+  #   vradius: Vertical radius of the ellipse
+  # Returns:
+  #   A dataframe containing x and y coordinates for the ellipse
+  
+  npoints <- 250  # Number of points to define the smoothness of the ellipse
+  a <- seq(0, 2 * pi, length = npoints + 1)  # Generate angles from 0 to 2π
+  x <- hradius * cos(a)  # Calculate x coordinates based on horizontal radius
+  y <- vradius * sin(a)  # Calculate y coordinates based on vertical radius
+  return(data.frame(x = x, y = y))  # Return a dataframe with x and y columns
 }
 
-N <- 250 # Assign size of the matrix
+N <- 250  # Set the size of the matrix (N x N)
 
-M <- matrix(rnorm(N * N), N, N) # Build the matrix
+# Generate a random N x N matrix with normally distributed entries
+M <- matrix(rnorm(N * N), N, N)  
 
-eigvals <- eigen(M)$values # Find the eigenvalues
+# Compute the eigenvalues of the matrix
+eigvals <- eigen(M)$values  
 
-eigDF <- data.frame("Real" = Re(eigvals), "Imaginary" = Im(eigvals)) # Build a dataframe
+# Create a dataframe of eigenvalues with real and imaginary parts
+eigDF <- data.frame("Real" = Re(eigvals), "Imaginary" = Im(eigvals))
 
-my_radius <- sqrt(N) # The radius of the circle is sqrt(N)
+# Compute the radius of the circle as sqrt(N)
+my_radius <- sqrt(N)  
 
-ellDF <- build_ellipse(my_radius, my_radius) # Dataframe to plot the ellipse
+# Generate an ellipse with the computed radius
+ellDF <- build_ellipse(my_radius, my_radius)  
 
-names(ellDF) <- c("Real", "Imaginary") # rename the columns
+# Rename the columns of the ellipse dataframe for consistency
+names(ellDF) <- c("Real", "Imaginary")
 
-# plot the eigenvalues
-p <- ggplot(eigDF, aes(x = Real, y = Imaginary))
-p <- p +
-  geom_point(shape = I(3)) +
-  theme(legend.position = "none")
+# Initialize the ggplot object with eigenvalue data
+p <- ggplot(eigDF, aes(x = Real, y = Imaginary))  
 
-# now add the vertical and horizontal line
-p <- p + geom_hline(aes(yintercept = 0))
-p <- p + geom_vline(aes(xintercept = 0))
+# Add points to represent eigenvalues
+p <- p + geom_point(shape = I(3)) + 
+  theme(legend.position = "none")  # Remove legend for cleaner visualization
 
-# finally, add the ellipse
+# Add horizontal and vertical lines to represent axes
+p <- p + geom_hline(aes(yintercept = 0))  # Horizontal line at y = 0
+p <- p + geom_vline(aes(xintercept = 0))  # Vertical line at x = 0
+
+# Overlay the ellipse representing the theoretical boundary
 p <- p + geom_polygon(data = ellDF, aes(x = Real, y = Imaginary, alpha = 1/20, fill = "red"))
+
+# Display the plot
 p
 
-ggsave("Girko.pdf", plot = p)
+pdf("../results/Girko.pdf")
+print(p)
+dev.off()

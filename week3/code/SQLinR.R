@@ -22,14 +22,14 @@ dbSendQuery(conn = db,
 #INSERT specifies where the data is entered (here the School table).
 #VALUES contains the data
 
- dbSendQuery(conn = db,
-         "INSERT INTO Consumer
+dbSendQuery(conn = db,
+            "INSERT INTO Consumer
          VALUES (1, 'Animalia', 'Arthropoda', 'Chaoborus trivittatus')")
- dbSendQuery(conn = db,
-         "INSERT INTO Consumer
+dbSendQuery(conn = db,
+            "INSERT INTO Consumer
          VALUES (2, 'Animalia', 'Arthropoda', 'Chaoborus americanus')")
- dbSendQuery(conn = db,
-         "INSERT INTO Consumer
+dbSendQuery(conn = db,
+            "INSERT INTO Consumer
          VALUES (3, 'Animalia', 'Chordata', 'Stizostedion vitreum')")
 
 
@@ -47,17 +47,15 @@ dbGetQuery(db, "SELECT * FROM Consumer WHERE ConPhylum='Chordata'")
 Resource <- read.csv("../Data/Resource.csv")  # Read csv files into R
 
 # Import data frames into database
- dbWriteTable(conn = db, name = "Resource", value = Resource, row.names = FALSE)
+dbWriteTable(conn = db, name = "Resource", value = Resource, row.names = FALSE)
 
 # Check that the data have been correctly imported into the School table.
- dbListTables(db)                 # The tables in the database
- dbListFields(db,"Resource")       # The columns in a table
- dbReadTable(db, "Resource")    # The data in a table
+dbListTables(db)                 # The tables in the database
+dbListFields(db,"Resource")       # The columns in a table
+dbReadTable(db, "Resource")    # The data in a table
 
 # Before leaving RSQLite, there is a bit of tidying-up to do.
 # The connection to the database is closed, and as precaution
 # the three data frames are removed from R’s environment.
- dbDisconnect(db)            # Close connection
- rm(list = c("Resource"))   # Remove data frames
-
-
+dbDisconnect(db)            # Close connection
+rm(list = c("Resource"))   # Remove data frames

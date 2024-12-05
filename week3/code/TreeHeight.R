@@ -9,7 +9,6 @@
 #
 # OUTPUT
 # The heights of the tree, same units as "distance"
-setwd("../data")
 
 TreeHeight <- function(angle, dist) {
     radians <- angle * pi / 180
@@ -19,7 +18,7 @@ TreeHeight <- function(angle, dist) {
     return (height)
 }
 
-tree_data <- read.csv("trees.csv")
+tree_data <- read.csv("../data/trees.csv")
 
 tree_heights <- numeric(nrow(tree_data))
 
@@ -32,5 +31,3 @@ for (i in 1:nrow(tree_data)) {
 tree_data$Tree.Height.m <- tree_heights
 
 write.csv(tree_data, "../results/TreeHts.csv", row.names = FALSE)
-
-
