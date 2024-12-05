@@ -1,4 +1,7 @@
 #!/bin/sh
+# Author: Sean Barry sb4524@ic.ac.uk
+# Arguments: none
+# Date: Oct 2024
 
 ## Illustrates the use of variables 
 

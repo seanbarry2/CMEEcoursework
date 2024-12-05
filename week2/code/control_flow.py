@@ -1,49 +1,52 @@
 #!/usr/bin/env python3
+# Author: Sean Barry sb4524@ic.ac.uk
+# Date: Oct 2024
 
-"""Prints 'this is a boiler plate'"""
+"""
+control_flow.py
+This script demonstrates the use of control flow statements in Python through various examples:
+- Checking if a number is even or odd.
+- Finding the largest divisor of a number among 2, 3, 4, 5.
+- Determining whether a number is prime.
+- Listing all prime numbers up to a given number.
 
-__appname__ = '[python boilerplate]'
-__author__ = 'Sean Barry (sb4524@ic.ac.uk)'
-__version__ = '0.0.1'
-__license__ = "NA"
+Usage:
+    Run the script to see examples of the functions in action.
+"""
 
-## imports ##
-import sys # module to interface our program with the operating system
-
-## constants ##
-
-
-## functions ##
-def main(argv):
-    """ Main entry point of the program """
-    print('This is a boilerplate') # NOTE: indented using two tabs or 4 spaces
-    return 0
-    sys.exit("I am exiting now")
-
-if __name__ == "__main__": 
-    """Makes sure the "main" function is called from command line"""  
-    status = main(sys.argv)
-    sys.exit(status)
-    
-#!/usr/bin/env python3
-
-"""Some functions exemplifying the use of control statements"""
-#docstrings are considered part of the running code (normal comments are
-#stripped). Hence, you can access your docstrings at run time.
+__appname__ = '[control_flow]'
 __author__ = 'Sean Barry (sb4524@ic.ac.uk)'
 __version__ = '0.1.0'
+__license__ = "NA"
 
 import sys
 
 def even_or_odd(x=0): # if not specified, x should take value 0.
+    """
+    Determine whether a number is even or odd.
 
-    """Find whether a number x is even or odd."""
+    Parameters:
+    x (int): The number to check. Defaults to 0.
+
+    Returns:
+    str: A string stating whether the number is even or odd.
+    """
+    
     if x % 2 == 0: #The conditional if
         return f"{x} is Even!"
     return f"{x} is Odd!"
 
 def largest_divisor_five(x=120):
-    """Find which is the largest divisor of x among 2,3,4,5."""
+    """
+    Find the largest divisor of a number among 2, 3, 4, 5.
+
+    Parameters:
+    x (int): The number to check. Defaults to 120.
+
+    Returns:
+    str: A string stating the largest divisor of the number, or a message if none are found.
+    """
+    
     largest = 0
     if x % 5 == 0:
         largest = 5
@@ -58,7 +61,16 @@ def largest_divisor_five(x=120):
     return f"The largest divisor of {x} is {largest}"
 
 def is_prime(x=70):
-    """Find whether an integer is prime."""
+    """
+    Determine whether a number is prime.
+
+    Parameters:
+    x (int): The number to check. Defaults to 70.
+
+    Returns:
+    bool: True if the number is prime, False otherwise.
+    """
+    
     for i in range(2, x): #  "range" returns a sequence of integers
         if x % i == 0:
             print(f"{x} is not a prime: {i} is a divisor") 
@@ -67,7 +79,16 @@ def is_prime(x=70):
     return True 
 
 def find_all_primes(x=22):
-    """Find all the primes up to x"""
+    """
+    Find all prime numbers up to a given number.
+
+    Parameters:
+    x (int): The upper limit for finding prime numbers. Defaults to 22.
+
+    Returns:
+    list: A list of all prime numbers up to x.
+    """
+    
     allprimes = []
     for i in range(2, x + 1):
         if is_prime(i):
@@ -76,6 +97,16 @@ def find_all_primes(x=22):
     return allprimes
       
 def main(argv):
+    """
+    Main entry point of the script.
+
+    Parameters:
+    argv (list): Command-line arguments.
+
+    Returns:
+    int: Exit status (0 for success).
+    """
+    
     print(even_or_odd(22))
     print(even_or_odd(33))
     print(largest_divisor_five(120))

@@ -1,16 +1,58 @@
+#!/usr/bin/env python3
+# Author: Sean Barry sb4524@ic.ac.uk
+# Date: Oct 2024
+
+"""
+align_seqs.py
+This script reads two sequences from a CSV file, finds the best alignment, 
+and saves the alignment and its score to a results file.
+
+Usage:
+    python align_seqs.py <filename.csv>
+
+The input CSV file must contain two sequences, each in a separate row.
+The output file is saved in the `../results` directory.
+"""
+
 import sys
 import csv
 import os
 
-# Function to read sequences from a CSV file
 def read_sequences(filename):
+    """
+    Read two sequences from a CSV file.
+
+    Parameters:
+    filename (str): Path to the input CSV file.
+
+    Returns:
+    tuple: Two sequences (str) from the file.
+    """
+    if not os.path.exists(filename):
+        raise FileNotFoundError(f"Input file '{filename}' not found.")
+    
     with open(filename, 'r') as file:
         reader = csv.reader(file)
         sequences = [row[0] for row in reader]  # Assumes each sequence is in a separate row
+    
+    if len(sequences) < 2:
+        raise ValueError("Input file must contain at least two sequences.")
+    
     return sequences[0], sequences[1]
 
-# Function to calculate the alignment score
+
 def calculate_score(s1, s2, l1, l2, startpoint):
+    """
+    Calculate the alignment score for a given startpoint.
+
+    Parameters:
+    s1, s2 (str): The sequences to align.
+    l1, l2 (int): Lengths of the sequences.
+    startpoint (int): The starting point for alignment.
+
+    Returns:
+    tuple: The score (int) and the alignment string (str).
+    """
     score = 0
     matched = ""
     for i in range(l2):
@@ -21,8 +63,17 @@ def calculate_score(s1, s2, l1, l2, startpoint):
             matched += "-"
     return score, "." * startpoint + matched
 
-# Function to find the best alignment
+
 def find_best_align(seq1, seq2):
+    """
+    Find the best alignment and its score.
+
+    Parameters:
+    seq1, seq2 (str): The sequences to align.
+
+    Returns:
+    tuple: Best alignment (str), the longer sequence (str), and the best score (int).
+    """
     l1, l2 = len(seq1), len(seq2)
     # Ensure s1 is the longer sequence
     if l1 >= l2:
@@ -37,28 +88,39 @@ def find_best_align(seq1, seq2):
         score, alignment = calculate_score(s1, s2, l1, l2, i)
         if score > best_score:
             best_score = score
-            best_align = "." * i + s2
+            best_align = alignment
 
     return best_align, s1, best_score
 
-# Function to write alignment and score to a file in the ../results directory
-def write_align(filename, best_align, s1, best_score):
-    # Define output path in the parent results directory
-    output_path = os.path.join("..", "results", filename)
+
+def write_alignment(output_path, best_align, s1, best_score):
+    """
+    Write the best alignment and score to a file.
+
+    Parameters:
+    output_path (str): Path to the output file.
+    best_align (str): The best alignment string.
+    s1 (str): The longer sequence.
+    best_score (int): The best alignment score.
+    """
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, 'w') as file:
         file.write(f"Best alignment:\n{best_align}\n{s1}\n")
         file.write(f"Best score: {best_score}\n")
-    return output_path
+    print(f"Best alignment and score saved to {output_path}")
 
-# Main execution block
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
+
+def main(argv):
+    """
+    Main function to handle input, processing, and output.
+    """
+    if len(argv) != 2:
         print("Usage: python align_seqs.py <filename.csv>")
         sys.exit(1)
     
-    input_file = sys.argv[1]
-    output_filename = "alignment_result!.txt"
-    
+    input_file = argv[1]
+    output_file = "../results/alignment_result.txt"
+
     try:
         # Read sequences from input CSV file
         seq1, seq2 = read_sequences(input_file)
@@ -66,10 +128,16 @@ if __name__ == "__main__":
         # Find the best alignment and score
         best_align, s1, best_score = find_best_align(seq1, seq2)
         
-        # Write the result to the output file in the ../results directory
-        output_path = write_align(output_filename, best_align, s1, best_score)
-        print(f"Best alignment and score saved to {output_path}")
+        # Write the result to the output file
+        write_alignment(output_file, best_align, s1, best_score)
     
-    except Exception as e:
+    except FileNotFoundError as e:
         print(f"Error: {e}")
+    except ValueError as e:
+        print(f"Error: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
+
+if __name__ == "__main__":
+    main(sys.argv)

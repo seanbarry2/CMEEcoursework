@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Author: Sean Barry sb4524@ic.ac.uk
+# Date: Oct 2024
 
 """Prints 'this is a boiler plate'"""
 

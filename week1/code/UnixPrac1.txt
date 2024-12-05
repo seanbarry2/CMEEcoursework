@@ -1,19 +1,29 @@
+#!/bin/sh
+# Author: Sean Barry sb4524@ic.ac.uk
+# Arguments: none
+# Date: Oct 2024
+
 cd ../data
-#1
+
+#1 Navigate to the parent directory's 'data' folder.
+
 wc -l 407228326.fasta 407228412.fasta E.coli.fasta
 
-#2
+#2 Count the number of lines in the specified FASTA files.
 
 tail -n +2 E.coli.fasta | less
 
-#3
+#3 View the contents of 'E.coli.fasta' starting from the second line in a pager.
 
 tail -n +2 E.coli.fasta | tr -d '\n' | wc -m
 
-#4
+#4 Remove newlines from 'E.coli.fasta' starting from the second line, and count the total number of characters.
 
 tr -d '\n' < E.coli.fasta | grep -o "ATGC" | wc -l
 
-#5
+#5 Remove newlines from 'E.coli.fasta', find occurrences of "ATGC" sequences, and count them.
 
 a_count=$(grep -o "A" E.coli.fasta | wc -l); t_count=$(grep -o "T" E.coli.fasta | wc -l); g_count=$(grep -o "G" E.coli.fasta | wc -l); c_count=$(grep -o "C" E.coli.fasta | wc -l); echo "scale=5; ($a_count + $t_count) / ($g_count + $c_count)" | bc
+
+#6 Count the occurrences of each nucleotide (A, T, G, C) in 'E.coli.fasta', then calculate the AT/GC ratio with 5 decimal places.
+

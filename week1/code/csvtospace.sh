@@ -2,7 +2,6 @@
 # Author: Sean Barry sb4524@ic.ac.uk
 # Script: tabtocsv.sh
 # Description: substitute the tabs in the files with commas
-#
 # Replaces commas with spaces
 # Arguments: 1 -> csv delimited file
 # Date: Oct 2024
